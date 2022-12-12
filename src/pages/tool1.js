@@ -75,7 +75,7 @@ function tool1() {
                     
                     
                   ></input>
-                  <Link href={"https://search-jade.vercel.app/"}>
+                  <Link href={"https://ivves-search.vercel.app/"}>
                   <button
                     type="submit"
                     className="absolute w-full p-4 pl-10 right-2.5 bottom-2.5 rounded-lg bg-green-700 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
