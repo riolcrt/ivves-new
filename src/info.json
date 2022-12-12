@@ -1,0 +1,223 @@
+[
+    
+    {
+        "ENTITY": "ING",
+        "TOOL-NAME": "TESTAR by OUNL, UPV, ING and Marviq",
+        "FOCUS": "WP3 - ML-DRIVEN TESTING FOR COMPLEX SYSTEMS",
+        "DESCRIPTION": "New and enhanced features for testing mobile applications, parallel testing of web, distributed state model inference with shared database, change detection, TESTAR action selection, reporting and test oracles based on image recognition. ",
+        "REQUIREMENTS": "TESTAR",
+        "RESTRICTIONS": "THE ARTIFACT IS LIMITED TO A SPECIFIC ENVIRONMENT OR OS",
+        "LICENSE": "IS OPEN SOURCE",
+        "INTEGRATION ": "THIS IS A FRAMEWORK, NOT DESIGNED TO BE INTEGRATED IN A TOOLCHAIN "
+    },
+    {
+        "ENTITY": "SALABS",
+        "TOOL-NAME": "TestArchiver, ChangeEngine by Siili SALabs",
+        "FOCUS": "WP3 - ML-DRIVEN TESTING FOR COMPLEX SYSTEMS",
+        "DESCRIPTION": "Changes-failures-based test prioritization tool.",
+        "REQUIREMENTS": "SQLITE orPOSTGRESQL, PYTHON",
+        "RESTRICTIONS": "NO RESTRICTIONS",
+        "LICENSE": "IS OPEN SOURCE",
+        "INTEGRATION ": "CAN BE USED, DEPLOYED AND/OR INTEGRATED IN ANY TOOLCHAIN.  "
+    },
+    {
+        "ENTITY": "F-SECURE, HU",
+        "TOOL-NAME": "pytest-rts  by HU and F-Secure",
+        "FOCUS": "WP3 - ML-DRIVEN TESTING FOR COMPLEX SYSTEMS",
+        "DESCRIPTION": "Coverage-based test prioritization tool for Python.",
+        "REQUIREMENTS": "PYTHON, PYTEST",
+        "RESTRICTIONS": "THE ARTIFACT IS LIMITED TO A SPECIFIC ENVIRONMENT OR OS",
+        "LICENSE": "IS OPEN SOURCE",
+        "INTEGRATION ": "CAN BE USED, DEPLOYED AND/OR INTEGRATED IN ANY TOOLCHAIN.  "
+    },
+    {
+        "ENTITY": "F-SECURE, HU",
+        "TOOL-NAME": "flaky-tests-analysis by HU and F-Secure",
+        "FOCUS": "WP3 - TESTING WITH UNCERTAINTIES FOR COMPLEX SYSTEMS",
+        "DESCRIPTION": "Visualize tests whose state changes most often, by processing historical xunit test results and checks which tests changes state most often.",
+        "REQUIREMENTS": "PYTHON, XUIT",
+        "RESTRICTIONS": "THE ARTIFACT IS LIMITED TO A SPECIFIC ENVIRONMENT OR OS",
+        "LICENSE": "IS OPEN SOURCE",
+        "INTEGRATION ": "THE ARTIFACT CAN BE INTEGRATED IN ANY TOOLCHAIN ENABLING COMMAND LINE PROGRAMS "
+    },
+    {
+        "ENTITY": "F-SECURE, HU",
+        "TOOL-NAME": "failures-analysis by HU and F-Secure",
+        "FOCUS": "WP3 - ML-DRIVEN TESTING FOR COMPLEX SYSTEMS",
+        "DESCRIPTION": "It provides fast and reliable way to find and group similar failures in your CI/CD pipeline.Visualise which tests contains similar failures. ",
+        "REQUIREMENTS": "PYTHON, XUIT",
+        "RESTRICTIONS": "THE ARTIFACT IS LIMITED TO A SPECIFIC ENVIRONMENT OR OS",
+        "LICENSE": "IS OPEN SOURCE",
+        "INTEGRATION ": "THE ARTIFACT CAN BE INTEGRATED IN ANY TOOLCHAIN ENABLING COMMAND LINE PROGRAMS "
+    },
+    {
+        "ENTITY": "F-SECURE",
+        "TOOL-NAME": "Change-Analyzer by F-Secure",
+        "FOCUS": "WP3 - ML-DRIVEN TESTING FOR COMPLEX SYSTEMS",
+        "DESCRIPTION": null,
+        "REQUIREMENTS": null,
+        "RESTRICTIONS": null,
+        "LICENSE": null,
+        "INTEGRATION ": " "
+    },
+    {
+        "ENTITY": "SOGETI",
+        "TOOL-NAME": "CodeAssist",
+        "FOCUS": "WP3 - ML-DRIVEN TESTING FOR COMPLEX SYSTEMS",
+        "DESCRIPTION": "Quality tool that analyses python GIT repositories and  incoming code changes",
+        "REQUIREMENTS": "PYTHON, GITHUB, GITLAB",
+        "RESTRICTIONS": "THE ARTIFACT IS LIMITED TO A SPECIFIC ENVIRONMENT OR OS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "AN API OR ENDPOINT COULD BE DEPLOYED TO COMMUNICATE WITH THE ARTIFACT (LOAD, EXPORT DATA) "
+    },
+    {
+        "ENTITY": "RISE",
+        "TOOL-NAME": "RELOAD by RISE",
+        "FOCUS": "WP3 - ML-DRIVEN TESTING FOR COMPLEX SYSTEMS",
+        "DESCRIPTION": "An adaptive Reinforcement Learning-driven load testing agent which effectively learns how to tune the load of transactions.",
+        "REQUIREMENTS": "PYTHON",
+        "RESTRICTIONS": "THE ARTIFACT COULD BE USED AS AN ONLINE SERVICE OR ACCESSED VIA ONLINE API",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "CAN BE USED, DEPLOYED AND/OR INTEGRATED IN ANY TOOLCHAIN.  "
+    },
+    {
+        "ENTITY": "PHILIPS-NL",
+        "TOOL-NAME": "Operational Profile Driven Test Framework by Philips Netherlands",
+        "FOCUS": "WP3 - ML-DRIVEN TESTING FOR COMPLEX SYSTEMS",
+        "DESCRIPTION": "A framework to increase V&V coverage and efficiency, closer to customer use. ",
+        "REQUIREMENTS": null,
+        "RESTRICTIONS": "NO RESTRICTIONS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "THIS IS A FRAMEWORK, NOT DESIGNED TO BE INTEGRATED IN A TOOLCHAIN "
+    },
+    {
+        "ENTITY": "SIICONCATEL",
+        "TOOL-NAME": "Test Prioritization for ESG-investment Evs by SII CONCATEL & NETCHECK",
+        "FOCUS": "WP3 - ML-DRIVEN TESTING FOR COMPLEX SYSTEMS",
+        "DESCRIPTION": "Prioritize test to better identify credibility and quality of content.",
+        "REQUIREMENTS": "PYTHON",
+        "RESTRICTIONS": "THE ARTIFACT COULD BE USED AS AN ONLINE SERVICE OR ACCESSED VIA ONLINE API",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "AN API OR ENDPOINT COULD BE DEPLOYED TO COMMUNICATE WITH THE ARTIFACT (LOAD, EXPORT DATA) "
+    },
+    {
+        "ENTITY": "KEYLAND",
+        "TOOL-NAME": "Anomaly Detection for Industrial Environments by Keyland",
+        "FOCUS": "WP3 - ONLINE TESTING AND MONITORING FOR COMPLEX SYSTEMS",
+        "DESCRIPTION": "Anomaly detection in industrial environments, having as SUT log data generated by injection moulding machine for thermoplastics",
+        "REQUIREMENTS": "PYTHON",
+        "RESTRICTIONS": "NO RESTRICTIONS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "AN API OR ENDPOINT COULD BE DEPLOYED TO COMMUNICATE WITH THE ARTIFACT (LOAD, EXPORT DATA) "
+    },
+    {
+        "ENTITY": "EKKONO",
+        "TOOL-NAME": "Sample Application: Fault analysis and anomaly detection",
+        "FOCUS": "WP4 - DATA COLLECTION, INSTRUMENTATION AND SMART PROBES",
+        "DESCRIPTION": "Enables predictive maintenance at the edge. It is an online tool that does not include probes or instrumentation. Nor does it require any specific infrastructure or store any data.",
+        "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
+        "RESTRICTIONS": "NO RESTRICTIONS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "NOT APPLICABLE "
+    },
+    {
+        "ENTITY": "OU-NL",
+        "TOOL-NAME": "Sample Application: GUI testing with TESTAR ",
+        "FOCUS": "WP4 - DATA COLLECTION, INSTRUMENTATION AND SMART PROBES",
+        "DESCRIPTION": "TESTAR to test ING web applications and implementing support for testing ING mobile applications (Android and iOS).",
+        "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
+        "RESTRICTIONS": "NO RESTRICTIONS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "NOT APPLICABLE "
+    },
+    {
+        "ENTITY": "PRAEGUS",
+        "TOOL-NAME": "Sample Application:  Test duration optimization in the testing phase",
+        "FOCUS": "WP4 - DATA COLLECTION, INSTRUMENTATION AND SMART PROBES",
+        "DESCRIPTION": "Insight in test performance (duration, failure rates, etc.) and charts, in our Orangebeard Control Room Next to that want to optimize the duration of a testset run depending of e.g. SCM-input, in our Orangebeard Auto Test Pilot.",
+        "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
+        "RESTRICTIONS": "NO RESTRICTIONS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "NOT APPLICABLE "
+    },
+    {
+        "ENTITY": "RISE",
+        "TOOL-NAME": "Sample Application:  Performance testing with SaFReL/RELOAD",
+        "FOCUS": "WP4 - DATA COLLECTION, INSTRUMENTATION AND SMART PROBES",
+        "DESCRIPTION": "It is a reinforcement Learning-assisted performance testing framework ",
+        "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
+        "RESTRICTIONS": "NO RESTRICTIONS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "NOT APPLICABLE "
+    },
+    {
+        "ENTITY": "SOGETI",
+        "TOOL-NAME": "Sample Application:  Software quality in the development phase",
+        "FOCUS": "WP4 - DATA ANALYTICS IN ENGINEERING AND OPERATION",
+        "DESCRIPTION": "AI-powered DevOps monitoring assistant to accelerate testing and development.",
+        "REQUIREMENTS": "TIME SERIES DATABASE, AZURE",
+        "RESTRICTIONS": "THE ARTIFACT IS LIMITED TO A SPECIFIC ENVIRONMENT OR OS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "AN API OR ENDPOINT COULD BE DEPLOYED TO COMMUNICATE WITH THE ARTIFACT (LOAD, EXPORT DATA) "
+    },
+    {
+        "ENTITY": "EKKONO",
+        "TOOL-NAME": "Sample Application: Fault analysis and anomaly detection",
+        "FOCUS": "WP4 - PATTERN RECOGNITION",
+        "DESCRIPTION": "Ekkono’s tool provides fault analysis and anomaly detection based on their own Change detection algorithm. The analysis is not automated but needs to be tailored for the problem at hand. ",
+        "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
+        "RESTRICTIONS": "NO RESTRICTIONS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "NOT APPLICABLE "
+    },
+    {
+        "ENTITY": "OU-NL",
+        "TOOL-NAME": "Sample Application: GUI testing with TESTAR ",
+        "FOCUS": "WP4 - PATTERN RECOGNITION",
+        "DESCRIPTION": "TESTAR has been extended with configuration allowing custom abstraction level for both states and actions for the model inference, and predicting transitions of GUI actions without executing them, based on similar actions from other states of the inferred model.",
+        "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
+        "RESTRICTIONS": "NO RESTRICTIONS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "NOT APPLICABLE "
+    },
+    {
+        "ENTITY": "PRAEGUS",
+        "TOOL-NAME": "Sample Application:  Test duration optimization in the testing phase",
+        "FOCUS": "WP4 - DATA COLLECTION, INSTRUMENTATION AND SMART PROBES",
+        "DESCRIPTION": "Extended Orangebeard to provide the module \"Auto Test Pilot\", to be able to perform basic subsetting and prioritization of testcases against the relevant context",
+        "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
+        "RESTRICTIONS": "NO RESTRICTIONS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "NOT APPLICABLE "
+    },
+    {
+        "ENTITY": "SOGETI",
+        "TOOL-NAME": "Sample Application:  Software quality in the development phase",
+        "FOCUS": "WP4 - PATTERN RECOGNITION",
+        "DESCRIPTION": " collaboraton with Alstom, validating the integration of data sources and visualize key KPIs, metrics and aforementioned data quality, model quality and code quality results. Provide a holistic software evaluation report.",
+        "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
+        "RESTRICTIONS": "NO RESTRICTIONS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "NOT APPLICABLE "
+    },
+    {
+        "ENTITY": "SIICONCATEL",
+        "TOOL-NAME": "Sample Application:  V&V for ESG investment system by SII CONCATEL/NC",
+        "FOCUS": "WP4 - PATTERN RECOGNITION",
+        "DESCRIPTION": "integratioin and orchestration of  all the ML-based components from the SUT, together with the components and tools to be developed for credibility assessment, explainability and test generation and prioritization within a cohesive MLOps workflow",
+        "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
+        "RESTRICTIONS": "NO RESTRICTIONS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "NOT APPLICABLE "
+    },
+    {
+        "ENTITY": "EKKONO",
+        "TOOL-NAME": "Fault analysis and anomaly detection",
+        "FOCUS": "WP4 - DATA ANALYTICS IN ENGINEERING AND OPERATION",
+        "DESCRIPTION": "Extended the CRISP-DM framework into a refined version for edge ML applications, with specific steps focused on the deployment phase of ML models (MLOps).",
+        "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
+        "RESTRICTIONS": "NO RESTRICTIONS",
+        "LICENSE": "IS PRIVATE",
+        "INTEGRATION ": "NOT APPLICABLE "
+    }
+]
