@@ -1,7 +1,7 @@
 import React from "react";
 import {  useState } from "react";
 import {  ChevronRightIcon } from "@heroicons/react/20/solid";
-import { BiChevronRight } from "react-icons/bi";
+import { BiChevronRight, BiSearch } from "react-icons/bi";
 import Link from "next/link";
 
 function tool1() {
@@ -148,31 +148,42 @@ function tool1() {
 export default tool1;
 
 export function ToolHeader(title) {
-  return <div className="max-w-screen mx-auto px-6  sm:px-8">
+  return <div className="max-w-screen mx-auto px-6 ">
     <div>
       <div className="mt-6 flex items-center justify-between">
-        <h2 className="mt-4 mb-4 text-xl font-bold lg:text-2xl">
+        <h2 className="text-xl font-bold">
           {title}
         </h2>
-      </div>
-      <div className="flex items-start justify-end gap-8">
-        <div className="mb-3 xl:w-96">
-          <form>
-            <div className="relative w-full">
-              <Link href={"https://ivves-search.vercel.app/"}>
-                <button
-                  type="submit"
-                  className="absolute w-full p-4 pl-10 right-2.5 bottom-2.5 rounded-lg bg-green-700 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Search tools relevant to my Ai cycle
-                </button>
-              </Link>
+      
+      <form className='w-3/12'>
+          <label
+            htmlFor="default-search"
+            className="sr-only mb-2 text-xs font-medium text-gray-900 dark:text-gray-300"
+          >
+            Search
+          </label>
+          <div className="relative w-full">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+             <BiSearch />
             </div>
-          </form>
-        </div>
-      </div>
+            <input
+              type="search"
+              id="default-search"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              placeholder="Search Tools..."
+              required
+            ></input>
+            <button
+              type="submit"
+              className="absolute right-2.5 bottom-2.5 rounded-lg bg-green-700 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Search
+            </button>
+          </div>
+        </form>
     </div>
-  </div>;
+    </div>
+  </div>
 }
 
 
