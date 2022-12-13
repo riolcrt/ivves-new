@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ToolHeader, Tooltip, TooltipInfo } from './tool1';
 
 function tool2() {
@@ -59,10 +59,10 @@ function tool2() {
         "ENTITY": "F-SECURE",
         "TOOL-NAME": "Change-Analyzer by F-Secure",
         "FOCUS": "WP3 - ML-DRIVEN TESTING FOR COMPLEX SYSTEMS",
-        "DESCRIPTION": null,
-        "REQUIREMENTS": null,
-        "RESTRICTIONS": null,
-        "LICENSE": null,
+        "DESCRIPTION": "",
+        "REQUIREMENTS": "",
+        "RESTRICTIONS": "",
+        "LICENSE": "",
         "INTEGRATION ": " "
     },
     {
@@ -90,7 +90,7 @@ function tool2() {
         "TOOL-NAME": "Operational Profile Driven Test Framework by Philips Netherlands",
         "FOCUS": "WP3 - ML-DRIVEN TESTING FOR COMPLEX SYSTEMS",
         "DESCRIPTION": "A framework to increase V&V coverage and efficiency, closer to customer use. ",
-        "REQUIREMENTS": null,
+        "REQUIREMENTS": "",
         "RESTRICTIONS": "NO RESTRICTIONS",
         "LICENSE": "IS PRIVATE",
         "INTEGRATION ": "THIS IS A FRAMEWORK, NOT DESIGNED TO BE INTEGRATED IN A TOOLCHAIN "
@@ -117,11 +117,44 @@ function tool2() {
     }
 ]
 
-const [selectedTool, setSelected] = useState(tools[0])
+const [filteredTools, setFilteredTools] = useState(tools)
+  const [selectedTool, setSelected] = useState(filteredTools[0])
+  const [filters, setFilters] = useState({
+    focus: {
+      "WP3 - ML-DRIVEN TESTING FOR COMPLEX SYSTEMS": true,
+      "WP3 - ONLINE TESTING AND MONITORING FOR COMPLEX SYSTEMS": true
+    },
+    license: {
+      "IS PRIVATE": true,
+      "IS OPEN SOURCE": true,
+    },
+    query: "",
+  })
+
+  useEffect(() => {
+    console.log('use efect', filters)
+    setFilteredTools(tools.filter((tool) => {
+      const focus = Object.keys(filters.focus).filter((key) => filters.focus[key])
+      const license = Object.keys(filters.license).filter((key) => filters.license[key])
+      const query = filters.query.toLowerCase()
+
+      return (
+        (focus.length === 0 || focus.includes(tool.FOCUS)) &&
+        (license.length === 0 || license.includes(tool.LICENSE)) &&
+        (query.length === 0 ||
+          tool.ENTITY.toLowerCase().includes(query) ||
+          tool["TOOL-NAME"].toLowerCase().includes(query) ||
+          tool.DESCRIPTION.toLowerCase().includes(query) ||
+          tool.REQUIREMENTS.toLowerCase().includes(query) ||
+          tool.RESTRICTIONS.toLowerCase().includes(query) ||
+          tool["INTEGRATION "].toLowerCase().includes(query))
+      )
+    }))
+    }, [filters])
 
   return (
     <>
-      {ToolHeader("Complex Evolving Systems")}
+      {ToolHeader({title:"Complex Evolving Systems", setFilters, filters})}
       {/* business contianer circle */}
 
       <div className="relative m-auto">
@@ -132,7 +165,7 @@ const [selectedTool, setSelected] = useState(tools[0])
         </div>
       </div>
       <div className="absolute top-[200px] left-20 w-[300px] space-y-2 flex-wrap">
-        {tools.map((tool) => (
+        {filteredTools.map((tool) => (
           <Tooltip tooltipInfo={tool} setSelected={setSelected} />
           ))}
       </div>

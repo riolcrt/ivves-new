@@ -1,8 +1,8 @@
-import React from "react";
-import {  useState } from "react";
+import React, { useEffect } from "react";
+import {  Fragment, useState } from "react";
 import {  ChevronRightIcon } from "@heroicons/react/20/solid";
-import { BiChevronRight } from "react-icons/bi";
-import Link from "next/link";
+import { BiChevronRight, BiSearch, BiFilter } from "react-icons/bi";
+import { Menu, Transition, Listbox } from "@headlessui/react";
 
 function tool1() {
   const tools = [
@@ -99,7 +99,7 @@ function tool1() {
   {
       "ENTITY": "SIICONCATEL",
       "TOOL-NAME": "ESG: FinTech by CCTL/NetCheck",
-      "FOCUS": "WP2 - CROSS-TASK ",
+      "FOCUS": "WP2 - CROSS-TASK",
       "DESCRIPTION": "A set of services to process news for ESG ivestment, classify news and detect/reject synthetic text",
       "REQUIREMENTS": "NONE",
       "RESTRICTIONS": "NO RESTRICTIONS",
@@ -109,7 +109,7 @@ function tool1() {
   {
       "ENTITY": "SOGETI",
       "TOOL-NAME": "QAIF by Sogeti",
-      "FOCUS": "WP2 - CROSS-TASK ",
+      "FOCUS": "WP2 - CROSS-TASK",
       "DESCRIPTION": " A Cohesive, generic framework that can be tailored to a specific AI solution in a given context covering: project phase, processes, outcomes, governance and people.",
       "REQUIREMENTS": "NONE",
       "RESTRICTIONS": "NO RESTRICTIONS",
@@ -118,11 +118,47 @@ function tool1() {
   },
   ]
 
-  const [selectedTool, setSelected] = useState(tools[0])
+  const [filteredTools, setFilteredTools] = useState(tools)
+  const [selectedTool, setSelected] = useState(filteredTools[0])
+  const [filters, setFilters] = useState({
+    focus: {
+      "WP2 - MODEL QUALITY": true,
+      "WP2 - DATA QUALITY": true,
+      "WP2 - TESTING TECHNIQUES FOR ML": true,
+      "WP2 - CROSS-TASK": true,
+    },
+    license: {
+      "IS PRIVATE": true,
+      "IS OPEN SOURCE": true,
+    },
+    query: "",
+  })
+
+  useEffect(() => {
+    console.log('use efect', filters)
+    setFilteredTools(tools.filter((tool) => {
+      const focus = Object.keys(filters.focus).filter((key) => filters.focus[key])
+      const license = Object.keys(filters.license).filter((key) => filters.license[key])
+      const query = filters.query.toLowerCase()
+
+      return (
+        (focus.length === 0 || focus.includes(tool.FOCUS)) &&
+        (license.length === 0 || license.includes(tool.LICENSE)) &&
+        (query.length === 0 ||
+          tool.ENTITY.toLowerCase().includes(query) ||
+          tool["TOOL-NAME"].toLowerCase().includes(query) ||
+          tool.DESCRIPTION.toLowerCase().includes(query) ||
+          tool.REQUIREMENTS.toLowerCase().includes(query) ||
+          tool.RESTRICTIONS.toLowerCase().includes(query) ||
+          tool["INTEGRATION "].toLowerCase().includes(query))
+      )
+    }))
+    }, [filters])
+
 
   return (
     <>
-      {ToolHeader("Validation Techniques for ML")}
+      {ToolHeader({title: "Validation Techniques for ML", setFilters, filters})}
       {/* business contianer circle */}
 
       <div className="relative m-auto  w-[340px] sm:w-[480px] md:w-[490px] lg:w-[800px]">
@@ -133,13 +169,13 @@ function tool1() {
         </div>
       </div>
 
-      <div className="absolute top-[200px] left-20 w-[300px] h-[600px] space-y-2 flex-wrap">
-        {tools.map((tool) => (
+      <div className="absolute top-[200px] left-20 w-[300px] space-y-2 flex-wrap">
+        {filteredTools.map((tool) => (
           <Tooltip key={tool['TOOL-NAME']} tooltipInfo={tool} setSelected={setSelected} />
           ))}
       </div>
       
-      <div className="absolute top-[200px] right-20 w-[300px] h-[600px] space-y-2 flex-wrap">
+      <div className="absolute top-[200px] right-20 w-[300px] space-y-2 flex-wrap">
         <TooltipInfo {...selectedTool} />
       </div>
     </>
@@ -147,32 +183,78 @@ function tool1() {
 }
 export default tool1;
 
-export function ToolHeader(title) {
-  return <div className="max-w-screen mx-auto px-6  sm:px-8">
+export function ToolHeader({title, setFilters, filters}) {
+  return <div className="w-full px-6">
     <div>
       <div className="mt-6 flex items-center justify-between">
-        <h2 className="mt-4 mb-4 text-xl font-bold lg:text-2xl">
+        <h2 className="text-xl font-bold">
           {title}
         </h2>
-      </div>
-      <div className="flex items-start justify-end gap-8">
-        <div className="mb-3 xl:w-96">
-          <form>
-            <div className="relative w-full">
-              <Link href={"https://ivves-search.vercel.app/"}>
-                <button
-                  type="submit"
-                  className="absolute w-full p-4 pl-10 right-2.5 bottom-2.5 rounded-lg bg-green-700 px-4 py-2 text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Search tools relevant to my Ai cycle
-                </button>
-              </Link>
-            </div>
-          </form>
+      <div className='w-3/12 flex gap-2'>
+      <form className='flex-1' >
+          <label
+            htmlFor="default-search"
+            className="sr-only mb-2 text-xs font-medium text-gray-900 dark:text-gray-50"
+          >
+            Search
+          </label>
+          <div className="relative w-full">
+            <input
+              type="search"
+              id="default-search"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              placeholder="Search Tools..."
+              onChange={(e) => setFilters({...filters, query: e.target.value})}
+            ></input>
+          </div>
+        </form>
+        <div className="mt-3 cursor-pointer">
+          <div>
+            <Menu as="div" className="relative inline-block text-left">
+              <div><Menu.Button><BiFilter /></Menu.Button></div>
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95">
+
+                  <Menu.Items className="absolute top-12 right-0 z-20 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none w-[650px] dark:bg-slate-900">
+                    <div className="p-5">
+                      
+                      <h4 className="text-base mb-2">I WANT TO FOCUS IN:</h4>
+                      <div className="flex-col items-center gap-2">
+                        {Object.keys(filters.focus).map((id) => (
+                          <div key={id} className="flex items-center gap-3">
+                            <input type="checkbox" onChange={(e) => {setFilters({...filters, ...{focus: {...filters.focus, [id]: e.target.checked}}})}} checked={filters.focus[id]} />
+                            <span>{id}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <h4 className='mt-5 mb-2'>MY PIPELINE IS FOCUSED ON A TOOL THAT</h4>
+                      <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-3">
+                          <input type="checkbox" onChange={(e) => {setFilters({...filters, ...{license: {...filters.license, 'IS OPEN SOURCE': e.target.checked}}})}} checked={filters.license['IS OPEN SOURCE']} />
+                          <span>Is open source</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <input type="checkbox" onChange={(e) => {setFilters({...filters, ...{license: {...filters.license, 'IS PRIVATE': e.target.checked}}})}} checked={filters.license['IS PRIVATE']} />
+                          <span>Is private</span>
+                        </div>
+                      </div>
+                  </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
+          </div>
         </div>
       </div>
     </div>
-  </div>;
+  </div>
+</div>
 }
 
 
@@ -180,7 +262,9 @@ export function Tooltip({tooltipInfo, setSelected}) {
   return (
     <div 
     onClick={() => setSelected(tooltipInfo)}
-    className='bg-white cursor-pointer hover:bg-slate-100 flex item-center justify-between text-sm rounded-sm shadow-sm px-4 py-2'>{tooltipInfo? tooltipInfo['TOOL-NAME'] : 'No name  '} <ChevronRightIcon className='w-[18px]'/></div>
+    className='bg-white cursor-pointer hover:bg-slate-100 flex item-center justify-between text-sm rounded-sm shadow-sm px-4 py-2
+    dark:bg-[#131B2D] dark:text-white
+    '>{tooltipInfo? tooltipInfo['TOOL-NAME'] : 'No name  '} <ChevronRightIcon className='w-[18px]'/></div>
   )
 }
 
@@ -189,45 +273,50 @@ export function TooltipInfo(selectedTool) {
   return (selectedTool && (
  
   <div className="flex w-full flex-col gap-4">
-                <div className="flex w-full items-center justify-between rounded-[6px] bg-white py-[6px] px-4 shadow-sm dark:bg-[#131B2D] dark:text-white">
-                  <p className=" text-xs md:text-sm lg:text-base">
-                    {selectedTool["TOOL-NAME"]}
-                  </p>
-                  <div>
-                    <BiChevronRight className="text-lg" />
-                  </div>
-                </div>
+    <div className="flex w-full items-center justify-between rounded-[6px] bg-white py-[6px] px-4 shadow-sm dark:bg-slate-900 dark:text-white">
+      <p className=" text-xs md:text-sm lg:text-base">
+        {selectedTool["TOOL-NAME"]}
+      </p>
+      <div>
+        <BiChevronRight className="text-lg" />
+      </div>
+    </div>
 
-                <div className="w-full rounded-[6px] bg-white p-4 shadow-sm dark:bg-[#131B2D] dark:text-white">
-                  <h4 className="font-semibold sm:text-xs md:text-sm lg:text-base">
-                    What is the tool for: <span className="font-normal">
-                    {selectedTool["DESCRIPTION"]}
-                    </span>
-                  </h4>
-                  <h4 className="mt-1 text-xs font-semibold md:text-sm lg:text-base">
-                    Requirements: <span className="font-normal">
-                    {selectedTool["REQUIREMENTS"]}
-                    </span>
-                  </h4>
-                  <div className="mt-2 flex flex-col gap-2">
-                    <h4 className="text-xs font-semibold md:text-sm lg:text-base">
-                      Restrictions <span className='font-normal'>
-                        {selectedTool["RESTRICTIONS"]}                      
-                      </span>
-                    </h4>
-                    <h4 className="text-xs font-semibold md:text-sm lg:text-base">
-                      License: <span className='font-normal'>
-                        {selectedTool["LICENSE"]}
-                      </span>
-                    </h4>
-                    <h4 className="text-xs font-semibold md:text-sm lg:text-base">
-                      How to integrate: <span className='font-normal'>
-                        {selectedTool["INTEGRATION "]}
-                      </span>
-                    </h4>
-                  </div>
-                </div>
-              </div>
+    <div className="w-full rounded-[6px] bg-white p-4 shadow-sm dark:bg-slate-900 dark:text-white">
+      <h4 className="font-semibold sm:text-xs md:text-sm lg:text-base">
+        Entity: <span className="font-normal">
+        {selectedTool["ENTITY"]}
+        </span>
+      </h4>
+      <h4 className="font-semibold sm:text-xs md:text-sm lg:text-base">
+        What is the tool for: <span className="font-normal">
+        {selectedTool["DESCRIPTION"]}
+        </span>
+      </h4>
+      <h4 className="mt-1 text-xs font-semibold md:text-sm lg:text-base">
+        Requirements: <span className="font-normal">
+        {selectedTool["REQUIREMENTS"]}
+        </span>
+      </h4>
+      <div className="mt-2 flex flex-col gap-2">
+        <h4 className="text-xs font-semibold md:text-sm lg:text-base">
+          Restrictions <span className='font-normal'>
+            {selectedTool["RESTRICTIONS"]}                      
+          </span>
+        </h4>
+        <h4 className="text-xs font-semibold md:text-sm lg:text-base">
+          License: <span className='font-normal'>
+            {selectedTool["LICENSE"]}
+          </span>
+        </h4>
+        <h4 className="text-xs font-semibold md:text-sm lg:text-base">
+          How to integrate: <span className='font-normal'>
+            {selectedTool["INTEGRATION "]}
+          </span>
+        </h4>
+      </div>
+    </div>
+  </div>
   ) || <div></div>)
 
 }
