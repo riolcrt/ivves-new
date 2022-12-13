@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ToolHeader, Tooltip, TooltipInfo } from './tool1';
 
 function tool3() {
@@ -57,7 +57,7 @@ function tool3() {
     },
     {
         "ENTITY": "EKKONO",
-        "TOOL-NAME": "Sample Application: Fault analysis and anomaly detection",
+        "TOOL-NAME": "Sample Application: Fault analysis and anomaly detection II",
         "FOCUS": "WP4 - PATTERN RECOGNITION",
         "DESCRIPTION": "Ekkonoâ€™s tool provides fault analysis and anomaly detection based on their own Change detection algorithm. The analysis is not automated but needs to be tailored for the problem at hand. ",
         "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
@@ -67,7 +67,7 @@ function tool3() {
     },
     {
         "ENTITY": "OU-NL",
-        "TOOL-NAME": "Sample Application: GUI testing with TESTAR ",
+        "TOOL-NAME": "Sample Application: GUI testing with TESTAR II",
         "FOCUS": "WP4 - PATTERN RECOGNITION",
         "DESCRIPTION": "TESTAR has been extended with configuration allowing custom abstraction level for both states and actions for the model inference, and predicting transitions of GUI actions without executing them, based on similar actions from other states of the inferred model.",
         "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
@@ -77,7 +77,7 @@ function tool3() {
     },
     {
         "ENTITY": "PRAEGUS",
-        "TOOL-NAME": "Sample Application:  Test duration optimization in the testing phase",
+        "TOOL-NAME": "Sample Application:  Test duration optimization in the testing phase II",
         "FOCUS": "WP4 - DATA COLLECTION, INSTRUMENTATION AND SMART PROBES",
         "DESCRIPTION": "Extended Orangebeard to provide the module \"Auto Test Pilot\", to be able to perform basic subsetting and prioritization of testcases against the relevant context",
         "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
@@ -87,7 +87,7 @@ function tool3() {
     },
     {
         "ENTITY": "SOGETI",
-        "TOOL-NAME": "Sample Application:  Software quality in the development phase",
+        "TOOL-NAME": "Sample Application:  Software quality in the development phase II",
         "FOCUS": "WP4 - PATTERN RECOGNITION",
         "DESCRIPTION": " collaboraton with Alstom, validating the integration of data sources and visualize key KPIs, metrics and aforementioned data quality, model quality and code quality results. Provide a holistic software evaluation report.",
         "REQUIREMENTS": "SAMPLE APPLICATION, CONTACT OWNER",
@@ -116,11 +116,46 @@ function tool3() {
         "INTEGRATION ": "NOT APPLICABLE "
     }
 ]
-  const [selectedTool, setSelected] = useState(tools[0])
+const [filteredTools, setFilteredTools] = useState(tools)
+const [selectedTool, setSelected] = useState(filteredTools[0])
+const [filters, setFilters] = useState({
+  focus: {
+    "WP4 - DATA COLLECTION, INSTRUMENTATION AND SMART PROBES": true,
+    "WP4 - DATA ANALYTICS IN ENGINEERING AND OPERATION": true,
+    "WP4 - PATTERN RECOGNITION": true,
+    "WP4 - DATA ANALYTICS IN ENGINEERING AND OPERATION": true
+  },
+  license: {
+    "IS PRIVATE": true,
+    "IS OPEN SOURCE": true,
+  },
+  query: "",
+})
+
+useEffect(() => {
+  console.log('use efect', filters)
+  setFilteredTools(tools.filter((tool) => {
+    const focus = Object.keys(filters.focus).filter((key) => filters.focus[key])
+    const license = Object.keys(filters.license).filter((key) => filters.license[key])
+    const query = filters.query.toLowerCase()
+
+    return (
+      (focus.length === 0 || focus.includes(tool.FOCUS)) &&
+      (license.length === 0 || license.includes(tool.LICENSE)) &&
+      (query.length === 0 ||
+        tool.ENTITY.toLowerCase().includes(query) ||
+        tool["TOOL-NAME"].toLowerCase().includes(query) ||
+        tool.DESCRIPTION.toLowerCase().includes(query) ||
+        tool.REQUIREMENTS.toLowerCase().includes(query) ||
+        tool.RESTRICTIONS.toLowerCase().includes(query) ||
+        tool["INTEGRATION "].toLowerCase().includes(query))
+    )
+  }))
+  }, [filters])
 
   return (
     <>
-      {ToolHeader("Data-Driven Engineering")}
+      {ToolHeader({title: "Data-Driven Engineering", setFilters, filters})}
       
 
       <div className="relative m-auto  w-[340px] sm:w-[480px] md:w-[490px] lg:w-[800px]">
@@ -131,8 +166,8 @@ function tool3() {
         </div>
       </div>
 
-      <div className="absolute top-[200px] left-20 w-[300px] h-[600px] space-y-2 flex-wrap">
-        {tools.map((tool) => (
+      <div className="absolute top-[200px] left-20 w-[300px] h-[600px] overflow-auto space-y-2 flex-wrap">
+        {filteredTools.map((tool) => (
           <Tooltip key={tool['TOOL-NAME']} tooltipInfo={tool} setSelected={setSelected} />
           ))}
       </div>
